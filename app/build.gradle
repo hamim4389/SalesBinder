@@ -39,4 +39,7 @@ dependencies {
     // barchart and maven { " "} is placed in settings.gradle's repo
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // for barcode and qr code
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+
 }

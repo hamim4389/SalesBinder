@@ -2,8 +2,10 @@ package com.example.salesbinder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+    Button btnAddProduct, btnUpdateProduct, btnViewInventory, btnRemainder;
     // variable for our bar chart
     BarChart barChart;
 
@@ -34,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // initializing variable for bar chart.
-        button = findViewById(R.id.button);
-        barChart = findViewById(R.id.id_bar_chart);
+        // initializing variable .
+        btnAddProduct    = findViewById(R.id.btn_add_product);
+        btnUpdateProduct = findViewById(R.id.btn_update_product);
+        btnViewInventory = findViewById(R.id.btn_view_inventory);
+        btnRemainder     = findViewById(R.id.btn_remainder);
+        barChart         = findViewById(R.id.id_bar_chart);
 
         // calling method to get bar entries.
         getBarEntries();
@@ -61,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
         // setting text size
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
+
+
+        // button clicking
+         btnAddProduct.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+             }
+         });
+
+
+
 
 
     }

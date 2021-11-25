@@ -10,7 +10,7 @@
         android:id="@+id/id_bar_chart"
         android:layout_width="408dp"
         android:layout_height="333dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_product"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,16 +18,56 @@
         app:layout_constraintVertical_bias="0.39" />
 
     <Button
-        android:text="BUTTON"
-        android:id="@+id/button"
-        android:layout_width="193dp"
-        android:layout_height="158dp"
+        android:id="@+id/btn_add_product"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
         android:layout_marginBottom="4dp"
+        android:text="Add Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
+        app:layout_constraintVertical_bias="0.694" />
+
+    <Button
+        android:id="@+id/btn_update_product"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="4dp"
+        android:text="Update Product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709" />
+
+    <Button
+        android:id="@+id/btn_view_inventory"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="4dp"
+        android:text="View Inventory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+    <Button
+        android:id="@+id/btn_remainder"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="4dp"
+        android:text="Remainder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
