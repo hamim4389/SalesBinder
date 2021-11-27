@@ -1,12 +1,12 @@
 package com.example.salesbinder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
     private ProgressBar progressBar;
@@ -43,7 +43,7 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
     public void startApp(){
-        Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+        Intent intent = new Intent(SplashScreen.this,Authentication.class);
         startActivity(intent);
         finish();
     }
