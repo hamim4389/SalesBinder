@@ -14,9 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -26,21 +31,30 @@ import java.util.Calendar;
 public class AddProductActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     TextView textViewExpiryDate, textViewItemCode;
-    EditText editTextItemName, editTextItemDesc, editTextMinQty, editTextQty, editTextPrice;
+    EditText editTextItemName, editTextItemDesc, editTextMinQty, editTextQty, editTextPrice, editTextExpireDate, editTextCategory, editTextDaysToExpire;
     Button btnExpiryDate, btnQrCode, btnAddItem;
     RadioGroup radioGroup;
     RadioButton rbYes, rbNo;
     boolean remainder = false;
 
+    // items details
+    private String NAME, DESC, CATEGORY, EXPIRY_DATE, BAR_CODE;
+    private int Qty, daysToExpireAlert, price, minQtyAlert;
+    boolean setAlert;
+
     String[] sampleCategorySuggestions = {"Rice", "Coke", "Noodles", "Tomato", "Termaric", "Racket"  };
+    String date;
     AutoCompleteTextView atvItemCategory;
+    IntentResult intentResult;
+    FirebaseDatabase database;
+    DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
-         atvItemCategory = findViewById(R.id.edit_txt_product_category);
+        atvItemCategory = findViewById(R.id.edit_txt_product_category);
 
         textViewExpiryDate = findViewById(R.id.txt_view_expiry_calender);
         textViewItemCode = findViewById(R.id.txt_view_qr_code);
@@ -50,6 +64,9 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
         editTextMinQty = findViewById(R.id.edit_txt_min_qty);
         editTextQty = findViewById(R.id.edit_txt_qty);
         editTextPrice = findViewById(R.id.edit_txt_price);
+        editTextCategory = findViewById(R.id.edit_txt_product_category);
+        // expiry date er koto din age alert dite chay
+        editTextDaysToExpire = findViewById(R.id.edit_txt_days_before_expire_date);
 
         radioGroup = findViewById(R.id.radio_group);
         rbYes = findViewById(R.id.radio_expiry_calender_yes);
@@ -59,39 +76,83 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
         btnExpiryDate = findViewById(R.id.btn_expiry_calender);
         btnQrCode = findViewById(R.id.btn_qr_code);
         // implementing
-          // drop down suggetions for category
-        atvItemCategory.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, sampleCategorySuggestions));
+          // drop down suggestions for category
+        atvItemCategory.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, sampleCategorySuggestions));
 
-        btnExpiryDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog();
-            }
+        // Calender listener
+        btnExpiryDate.setOnClickListener(view -> showDatePickerDialog());
+
+
+       // bar code listener
+        btnQrCode.setOnClickListener(view -> {
+            IntentIntegrator intentIntegrator = new IntentIntegrator(
+                    AddProductActivity.this
+            );
+            intentIntegrator.setPrompt("For flash use volume up key");
+            intentIntegrator.setBeepEnabled(true);
+            intentIntegrator.setOrientationLocked(true);
+            intentIntegrator.setCaptureActivity(Capture.class);
+            intentIntegrator.initiateScan();
+
         });
 
+        // firebase
+        database = FirebaseDatabase.getInstance();
+        dbRef = database.getReference();
 
-        btnQrCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(
-                        AddProductActivity.this
-                );
-                intentIntegrator.setPrompt("For flash use volume up key");
-                intentIntegrator.setBeepEnabled(true);
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.setCaptureActivity(Capture.class);
-                intentIntegrator.initiateScan();
+        // storing item details in firebase
+        btnAddItem.setOnClickListener(view -> {
 
-            }
+            NAME = editTextItemName.getText().toString().trim();
+            DESC = editTextItemDesc.getText().toString().trim();
+            CATEGORY = editTextCategory.getText().toString().trim();
+            EXPIRY_DATE = date;
+           // BAR_CODE = intentResult.getContents();
+            BAR_CODE = "";
+            Qty = Integer.parseInt(editTextQty.getText().toString().trim());
+            //daysToExpireAlert = Integer.parseInt(editTextDaysToExpire.getText().toString().trim());
+            daysToExpireAlert = 10;
+            price = Integer.parseInt(editTextPrice.getText().toString().trim());
+            minQtyAlert = Integer.parseInt(editTextMinQty.getText().toString().trim());
+            setAlert = remainder;
+
+            ItemModel item = new ItemModel(NAME, DESC, CATEGORY, EXPIRY_DATE, BAR_CODE, Qty, daysToExpireAlert,
+                     price, minQtyAlert, setAlert);
+
+            dbRef.child("Items").child(CATEGORY).child(NAME).setValue(item).addOnCompleteListener(
+                    task -> Toast.makeText(getApplicationContext(), "Items Added", Toast.LENGTH_LONG).show());
+
+            //  set every field to blank
+
+                //  editTextExpireDate.setText("");
+            editTextCategory.setText("");
+            editTextItemName.setText("");
+            editTextItemDesc.setText("");
+            editTextMinQty.setText("");
+            editTextQty.setText("");
+            editTextPrice.setText("");
+            editTextDaysToExpire.setText("");
+
+            textViewItemCode.setText("");
+            textViewExpiryDate.setText("");
+
+
+            // TODO intent
+
+
+
         });
 
     }
+
+
+// scanning barcode
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+        intentResult = IntentIntegrator.parseActivityResult(
                 requestCode, resultCode, data
         );
 
@@ -105,22 +166,26 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
 
     }
 
-    public void onClicked(View view){
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
+    // radio button
 
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radio_expiry_calender_yes:
-                if (checked)
-                    remainder = true;
-                    break;
-            case R.id.radio_expiry_calender_no:
-                if (checked)
-                    remainder = false;
-                    break;
-        }
-    }
+//    public void onClicked(View view){
+//        // Is the button now checked?
+//        boolean checked = ((RadioButton) view).isChecked();
+//
+//        // Check which radio button was clicked
+//        switch(view.getId()) {
+//            case R.id.radio_expiry_calender_yes:
+//                    editTextExpireDate.setVisibility(View.VISIBLE);
+//                    remainder = true;
+//                    break;
+//            case R.id.radio_expiry_calender_no:
+//                    editTextExpireDate.setVisibility(View.INVISIBLE);
+//                    remainder = false;
+//                    break;
+//        }
+//    }
+
+    // calender
 
     private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -137,7 +202,7 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-             String date = "day / month / year : " + dayOfMonth + "/ " + month + "/ " + year;
+             date = "day/month/year : " + dayOfMonth + "/ " + month + "/ " + year;
              textViewExpiryDate.setText(date);
 
     }

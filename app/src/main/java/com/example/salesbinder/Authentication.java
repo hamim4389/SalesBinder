@@ -1,5 +1,6 @@
 package com.example.salesbinder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -16,11 +17,14 @@ public class Authentication extends AppCompatActivity {
     private TextView textView;
     private int counter = 3;
     private Button signupButton;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
+
+
 
         usernameEditText = (EditText) findViewById(R.id.usernameId);
         passwordEditText = (EditText) findViewById(R.id.passwordId);
@@ -43,7 +47,7 @@ public class Authentication extends AppCompatActivity {
                 }
                 else {
                         counter--;
-                        textView.setText("Number of attempts remaining : "+counter);
+                        textView.setText("Number of attempts remaining : " + counter);
                         if(counter==0){
                             loginButton.setEnabled(false);
                         }
@@ -59,6 +63,13 @@ public class Authentication extends AppCompatActivity {
                     startActivity(intent);
                 }
         });
+//        loginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Authentication.this,MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 

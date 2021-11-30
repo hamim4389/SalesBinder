@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/txt_view_product_details"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:gravity="center"
         android:text="Product Details"
         android:textStyle="bold" />
@@ -118,14 +118,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yes"
-            android:onClick="onClicked"
             android:paddingRight="20dp"/>
 
         <RadioButton android:id="@+id/radio_expiry_calender_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NO"
-            android:onClick="onClicked"/>
+             />
     </RadioGroup>
 
 
@@ -152,11 +151,21 @@
         android:textAlignment="center"
         android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/edit_txt_days_before_expire_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_view_expiry_date_remainder"
+        android:backgroundTint="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:hint="How many days before the alert?" />
+
     <TextView
         android:id="@+id/txt_view_qty"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_expiry_date_remainder"
+        android:layout_below="@+id/edit_txt_days_before_expire_date"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:paddingLeft="7dp"
@@ -169,7 +178,7 @@
         android:id="@+id/edit_txt_qty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_expiry_date_remainder"
+        android:layout_below="@+id/edit_txt_days_before_expire_date"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/txt_view_category"
         android:backgroundTint="@android:color/holo_blue_bright" />
