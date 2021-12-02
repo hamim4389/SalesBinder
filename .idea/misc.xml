@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.1" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/drawable/buttonshape.xml" value="0.1" />
-        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
-        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_authentication.xml" value="0.1" />
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/drawable/buttonss.xml" value="0.1" />
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_add_product.xml" value="0.1" />
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_authentication.xml" value="0.25" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_signup.xml" value="0.18" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_update_product.xml" value="0.18" />
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/dialog_sell_product.xml" value="0.1598731884057971" />
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/list_items.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17" />
       </map>

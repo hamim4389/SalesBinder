@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SalesBinder</string>
+
+    <string-array name="Item_Name">
+        <item>Katari</item>
+        <item>Sunsilk</item>
+        <item>Dove</item>
+        <item>Basmoti</item>
+    </string-array>
+
+    <string-array name="Item_Category">
+        <item>Rice</item>
+        <item>Shampoo</item>
+        <item>ColdDrink</item>
+
+    </string-array>
 </resources>

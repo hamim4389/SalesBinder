@@ -3,6 +3,10 @@ package com.example.salesbinder;
 public class UserModel {
     String NAME, NUMBER, PASSWORD;
 
+    public UserModel(){
+
+    }
+
     public UserModel(String NAME, String NUMBER, String PASSWORD) {
         this.NAME = NAME;
         this.NUMBER = NUMBER;

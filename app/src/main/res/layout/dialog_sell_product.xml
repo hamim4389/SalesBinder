@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/purple_500">
+
+    <AutoCompleteTextView
+        android:id="@+id/tv_dialog_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:completionThreshold="0"
+        android:hint="Item Name"
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/tv_dialog_item_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:completionThreshold="0"
+        android:hint="Category Name"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/edit_txt_dialog_qty"
+        android:layout_width="150dp"
+        android:paddingLeft="20dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:drawableBottom="@color/white"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:hint="Qty"/>
+
+    <EditText
+        android:paddingLeft="20dp"
+        android:id="@+id/edit_txt_dialog_price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="4dp"
+        android:textColorHint="@color/white"
+        android:layout_marginRight="4dp"
+        android:drawableBottom="@color/white"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:hint="Price" />
+</LinearLayout>
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_dialog_sell"
+            android:layout_width="150dp"
+
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="SELL"
+            android:layout_marginRight="50dp"
+            android:textColor="#ffffffff"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            />
+
+        <Button
+
+            android:id="@+id/btn_dialog_Cancel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="CANCEL"
+            android:textColor="#ffffffff"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</LinearLayout>

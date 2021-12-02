@@ -24,7 +24,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnAddProduct, btnUpdateProduct, btnViewInventory, btnRemainder;
+    Button btnAddProduct, btnUpdateProduct, btnViewInventory, btnRemainder, btnSellProduct;
+    CustomDialogFragment dialogFragment;
     // variable for our bar chart
     BarChart barChart;
 
@@ -46,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // initializing variable .
+        btnSellProduct   = findViewById(R.id.btn_sell_product);
         btnAddProduct    = findViewById(R.id.btn_add_product);
         btnUpdateProduct = findViewById(R.id.btn_update_product);
         btnViewInventory = findViewById(R.id.btn_view_inventory);
         btnRemainder     = findViewById(R.id.btn_remainder);
         barChart         = findViewById(R.id.id_bar_chart);
+
+        // getting extras for profile from authentication activity
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        String username_string = extras.getString("EXTRA_USERNAME");
+//        String password_string = extras.getString("EXTRA_PASSWORD");
+//        String number_string = extras.getString("EXTRA_NUMBER");
 
         // calling method to get bar entries.
         getBarEntries();
@@ -78,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         // button clicking
+
+        // pop up dialog to sell a product
+        btnSellProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment dialog = new CustomDialogFragment();
+                dialog.showDialog(MainActivity.this, "");
+            }
+        });
+
          btnAddProduct.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
