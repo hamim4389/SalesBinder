@@ -2,11 +2,16 @@ package com.example.salesbinder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,14 +30,23 @@ public class UpdateProduct extends AppCompatActivity {
     DatabaseReference dbRef;
     RecyclerViewAdapter adapter;
 
+    Toolbar toolbar;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product);
 
+
+
         recyclerView = findViewById(R.id.recycler_view);
+        toolbar = findViewById(R.id.update_product_toolbar);
         itemList = new ArrayList<>();
 
+        this.setSupportActionBar(toolbar);
+        this.getSupportActionBar().setTitle("");
         // retrieving data form firebase
         populateItemList();
         setAdapter();
@@ -44,6 +58,7 @@ public class UpdateProduct extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
 
 
     }
@@ -103,5 +118,47 @@ public class UpdateProduct extends AppCompatActivity {
 
 
 
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id ==  R.id.search_view_menu){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.search_view_menu);
+
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+              adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+
+        return  true;
     }
 }

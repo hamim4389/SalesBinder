@@ -3,6 +3,8 @@ package com.example.salesbinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,13 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
 
     private ArrayList<ItemModel> itemList;
+    private  ArrayList<ItemModel> itemListFiltered;
 
     // constructor
     public RecyclerViewAdapter(ArrayList<ItemModel> itemList){
         this.itemList = itemList;
+        this.itemListFiltered = itemList;
     }
 
 
@@ -56,6 +60,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return itemList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+
+                if(constraint == null | constraint.length() == 0 ){
+
+                    filterResults.count = itemListFiltered.size();
+                    filterResults.values = itemListFiltered;
+
+                }else{
+
+                   String searchChar = constraint.toString().toLowerCase();
+
+                   ArrayList<ItemModel> resultList = new ArrayList<>();
+
+                   for( ItemModel item : itemListFiltered ){
+                       if(item.getNAME().toLowerCase().contains(searchChar)){
+                           resultList.add(item);
+                       }
+                   }
+                    filterResults.count = resultList.size();
+                    filterResults.values = resultList;
+                }
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                   itemList = (ArrayList<ItemModel>) results.values;
+                   notifyDataSetChanged();
+            }
+        };
+        return filter;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
