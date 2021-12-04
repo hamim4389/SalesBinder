@@ -1,6 +1,5 @@
 package com.example.salesbinder;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -68,41 +67,41 @@ public class Authentication extends AppCompatActivity {
                  */
 
                 //  validating the current user
-//                db = FirebaseDatabase.getInstance().getReference("Users");
-//                db.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if(snapshot.hasChild(username)){
-//                            UserModel user = snapshot.child(username).getValue(UserModel.class);
-//                            if(user.getPASSWORD().equals(password)){
-//
-//                                // put the info for setting profile in mainActivity
-//
-//                                Intent intent = new Intent(Authentication.this, MainActivity.class);
-//                                Bundle extras = new Bundle();
-//                                extras.putString("EXTRA_USERNAME", user.getNAME());
-//                                extras.putString("EXTRA_PASSWORD", user.getPASSWORD());
-//                                extras.putString("EXTRA_NUMBER", user.getNUMBER());
-//                                intent.putExtras(extras);
-//                                startActivity(intent);
-//                                Toast.makeText(getApplicationContext(),"Welcome!", Toast.LENGTH_LONG).show();
-//
-//
-//                            }
-//                        }
-//                        else{
-//                            Toast.makeText(getApplicationContext(),"You are not registered!", Toast.LENGTH_LONG).show();
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
-//
-//
-//                    }
-//                });
+                db = FirebaseDatabase.getInstance().getReference("Users");
+                db.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(username)){
+                            UserModel user = snapshot.child(username).getValue(UserModel.class);
+                            if(user.getPASSWORD().equals(password)){
+
+                                // put the info for setting profile in mainActivity
+
+                                Intent intent = new Intent(Authentication.this, MainActivity.class);
+                                Bundle extras = new Bundle();
+                                extras.putString("EXTRA_USERNAME", user.getNAME());
+                                extras.putString("EXTRA_PASSWORD", user.getPASSWORD());
+                                extras.putString("EXTRA_NUMBER", user.getNUMBER());
+                                intent.putExtras(extras);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(),"Welcome!", Toast.LENGTH_LONG).show();
+
+
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"You are not registered!", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+
+
+                    }
+                });
 
             }
         });
