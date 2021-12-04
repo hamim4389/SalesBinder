@@ -227,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
     private void getBarEntries() {
         // creating a new array list
         barEntriesArrayList = new ArrayList<>();
+//        int sales = new CustomDialogFragment().getSales();
+//        int spending = new AddProductActivity().getSpending();
+//        int revenue = sales - spending;
 
         // adding new entry to our array list with bar
         // entry and passing x and y axis value to it.

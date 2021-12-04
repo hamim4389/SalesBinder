@@ -21,11 +21,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CustomDialogFragment{
     EditText editTextItemQty, editTextItemPrice;
     Button btnDialogSell, btnDialogCancel;
     ArrayAdapter<String> adapterName, adapterCategory;
     Spinner spinnerName, spinnerCategory;
+    static int sales = 0;
+    DatabaseReference dbRef;
 
     AutoCompleteTextView atvName, atvCategory;
 
@@ -47,7 +55,8 @@ public class CustomDialogFragment{
         atvCategory = (AutoCompleteTextView) dialog.findViewById(R.id.tv_dialog_item_category);
         atvName = (AutoCompleteTextView) dialog.findViewById(R.id.tv_dialog_item_name);
         editTextItemPrice =(EditText) dialog.findViewById(R.id.edit_txt_dialog_price);
-        editTextItemQty =(EditText) dialog.findViewById(R.id.edit_txt_dialog_qty);
+        editTextItemQty = (EditText) dialog.findViewById(R.id.edit_txt_dialog_qty);
+
 
         adapterName = new ArrayAdapter<String>(activity.getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, nameArr);
         // activity.getResources().getStringArray(R.array.Item_Name)
@@ -95,11 +104,50 @@ public class CustomDialogFragment{
 
 
         btnDialogSell.setOnClickListener(v -> {
+             //sales += Integer.parseInt(editTextItemPrice.toString().trim());
+
+             String name  = atvName.getText().toString().trim();
+             String category = atvCategory.getText().toString().trim();
+             int qty = Integer.parseInt(editTextItemQty.getText().toString().trim());
+              double price = Double.parseDouble(editTextItemPrice.getText().toString().trim());
+
+             dbRef = FirebaseDatabase.getInstance().getReference("Items").child(category).child(name);
+
+             dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                 @Override
+                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                     ItemModel item =  snapshot.getValue(ItemModel.class);
+                     int newQty = item.getQty() - qty;
+
+                     double perPrice= item.getPrice()/ item.getQty();
+
+                     double newPrice = perPrice * newQty;
+
+                     if(newQty < 0) {
+                         Toast.makeText(activity.getApplicationContext(), "Don't have enough Qty!!", Toast.LENGTH_SHORT).show();
+                         return;
+                     }
+                     dbRef.child("price").setValue(newPrice);
+                     dbRef.child("qty").setValue(newQty);
+                     Toast.makeText(activity.getApplicationContext(),"Updated the stock" ,Toast.LENGTH_SHORT).show();
+
+                 }
+
+                 @Override
+                 public void onCancelled(@NonNull DatabaseError error) {
+                     Toast.makeText(activity.getApplicationContext(),error.getMessage() ,Toast.LENGTH_SHORT).show();
+                 }
+             });
+
                     Toast.makeText(activity.getApplicationContext(),"Added to Inventory" ,Toast.LENGTH_SHORT).show();
             dialog.cancel();
         });
 
         dialog.show();
+    }
+
+    int getSales(){
+        return this.sales;
     }
 
 }

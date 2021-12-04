@@ -3,14 +3,15 @@ package com.example.salesbinder;
 public class ItemModel {
 
     private String NAME, DESC, CATEGORY, EXPIRY_DATE, BAR_CODE;
-    private int Qty, daysToExpireAlert, price, minQtyAlert;
+    private int Qty, daysToExpireAlert, minQtyAlert;
+    private double price;
     boolean setAlert;
 
     public ItemModel(){
 
     }
     public ItemModel(String NAME, String DESC, String CATEGORY, String EXPIRY_DATE, String BAR_CODE,
-              int Qty, int daysToExpireAlert, int price, int minQtyAlert, boolean setAlert)
+              int Qty, int daysToExpireAlert, double price, int minQtyAlert, boolean setAlert)
     {
         this.NAME = NAME;
         this.DESC = DESC;
@@ -80,7 +81,7 @@ public class ItemModel {
         this.daysToExpireAlert = daysToExpireAlert;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return this.price;
     }
 

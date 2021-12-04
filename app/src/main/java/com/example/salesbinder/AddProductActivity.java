@@ -20,8 +20,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -36,10 +39,12 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
     RadioGroup radioGroup;
     RadioButton rbYes, rbNo;
     boolean remainder = false;
+    static int spending = 0;
 
     // items details
     private String NAME, DESC, CATEGORY, EXPIRY_DATE, BAR_CODE;
-    private int Qty, daysToExpireAlert, price, minQtyAlert;
+    private int Qty, daysToExpireAlert, minQtyAlert;
+    private double price;
     boolean setAlert;
 
     String[] sampleCategorySuggestions = {"Rice", "Coke", "Noodles", "Tomato", "Termaric", "Racket"  };
@@ -112,12 +117,16 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
             Qty = Integer.parseInt(editTextQty.getText().toString().trim());
             //daysToExpireAlert = Integer.parseInt(editTextDaysToExpire.getText().toString().trim());
             daysToExpireAlert = 10;
-            price = Integer.parseInt(editTextPrice.getText().toString().trim());
+            price = Double.parseDouble(editTextPrice.getText().toString().trim());
             minQtyAlert = Integer.parseInt(editTextMinQty.getText().toString().trim());
             setAlert = remainder;
 
             ItemModel item = new ItemModel(NAME, DESC, CATEGORY, EXPIRY_DATE, BAR_CODE, Qty, daysToExpireAlert,
                      price, minQtyAlert, setAlert);
+            // adding total spending
+            spending += price;
+
+
 
             dbRef.child("Items").child(CATEGORY).child(NAME).setValue(item).addOnCompleteListener(
                     task -> Toast.makeText(getApplicationContext(), "Items Added", Toast.LENGTH_LONG).show());
@@ -145,6 +154,9 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
 
     }
 
+    int getSpending(){
+        return this.spending;
+    }
 
 // scanning barcode
 

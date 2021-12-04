@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/apps/SalesBinder/app/src/main/res/layout/dialog_sell_product.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.33055555555555555" />
         <entry key="app/src/main/res/drawable-anydpi/ic_action_password.xml" value="0.33055555555555555" />
         <entry key="app/src/main/res/drawable/buttonshape.xml" value="0.33055555555555555" />
