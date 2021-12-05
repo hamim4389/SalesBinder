@@ -15,6 +15,8 @@ public class FirstFragment extends Fragment {
 
 
 
+
+
     public FirstFragment(String username_string, String password_string, String number_string) {
         this.username_string = username_string;
         this.password_string = password_string;
@@ -32,6 +34,9 @@ public class FirstFragment extends Fragment {
         backHome= (TextView) root.findViewById(R.id.btn_home);
         name = (TextView) root.findViewById(R.id.acc_username);
         number = (TextView) root.findViewById(R.id.acc_number);
+
+
+
 
 //        MainActivity myActivity = (MainActivity) getActivity();
 //        String data = myActivity.myData();

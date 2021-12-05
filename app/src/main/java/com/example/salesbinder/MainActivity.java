@@ -218,6 +218,10 @@ public class MainActivity extends AppCompatActivity {
 
             if(cnt == 1){
                 fragment = new FirstFragment(username_string, password_string, number_string);
+            btnAddProduct.setVisibility(View.INVISIBLE);
+            btnViewInventory.setVisibility(View.INVISIBLE);
+            btnRemainder.setVisibility(View.INVISIBLE);
+            btnUpdateProduct.setVisibility(View.INVISIBLE);
             }
             else if(cnt  == 2){
                 fragment = new SecondFragment();
@@ -252,10 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 
-            btnAddProduct.setVisibility(View.INVISIBLE);
-            btnViewInventory.setVisibility(View.INVISIBLE);
-            btnRemainder.setVisibility(View.INVISIBLE);
-            btnUpdateProduct.setVisibility(View.INVISIBLE);
+
             return true;
         }
         return super.onOptionsItemSelected(item);
