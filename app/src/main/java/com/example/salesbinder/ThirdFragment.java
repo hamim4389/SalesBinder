@@ -1,4 +1,6 @@
 package com.example.salesbinder;
 
-public class ThirdFragment {
+import androidx.fragment.app.Fragment;
+
+public class ThirdFragment extends Fragment {
 }

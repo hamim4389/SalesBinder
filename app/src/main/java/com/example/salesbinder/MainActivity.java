@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView nvDrawer;
     // variable for our bar chart
+    // variable for our bar chart
     BarChart barChart;
 
     // variable for our bar data.
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef;
     private MenuItem item;
+    String username_string, password_string, number_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +89,10 @@ public class MainActivity extends AppCompatActivity {
         barChart         = findViewById(R.id.id_bar_chart);
 
         // getting extras for profile from authentication activity
-//        Intent intent = getIntent();
-//        Bundle extras = intent.getExtras();
-//        String username_string = extras.getString("EXTRA_USERNAME");
-//        String password_string = extras.getString("EXTRA_PASSWORD");
-//        String number_string = extras.getString("EXTRA_NUMBER");
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null)
+        userInfo(extras);
 
         // calling method to get bar entries.
         getBarEntries();
@@ -152,6 +153,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String myData(){
+        return "hello World!";
+    }
+
+    private void userInfo(Bundle extras) {
+
+        username_string = extras.getString("EXTRA_USERNAME");
+        password_string = extras.getString("EXTRA_PASSWORD");
+        number_string = extras.getString("EXTRA_NUMBER");
+    }
+
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
@@ -169,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                         selectDrawerItem(menuItem);
                         return true;
                     }
@@ -179,23 +192,42 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
+
+         int cnt = 0;
         Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.nav_account:
+                 cnt = 1;
                 fragmentClass = FirstFragment.class;
                 break;
             case R.id.nav_settings:
+                cnt = 2;
                 fragmentClass = SecondFragment.class;
                 break;
             case R.id.nav_logout:
+                cnt = 3;
                 fragmentClass = ThirdFragment.class;
                 break;
             default:
+                cnt = 1;
                 fragmentClass = FirstFragment.class;
+
         }
 
         try {
-            fragment = (Fragment) fragmentClass.newInstance();
+
+            if(cnt == 1){
+                fragment = new FirstFragment(username_string, password_string, number_string);
+            }
+            else if(cnt  == 2){
+                fragment = new SecondFragment();
+            }
+            else if(cnt == 3){
+                fragment = new ThirdFragment();
+            }
+            //fragment = (Fragment) fragmentClass.newInstance();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -219,6 +251,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+            btnAddProduct.setVisibility(View.INVISIBLE);
+            btnViewInventory.setVisibility(View.INVISIBLE);
+            btnRemainder.setVisibility(View.INVISIBLE);
+            btnUpdateProduct.setVisibility(View.INVISIBLE);
             return true;
         }
         return super.onOptionsItemSelected(item);
