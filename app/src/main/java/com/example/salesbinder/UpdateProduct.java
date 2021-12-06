@@ -1,5 +1,10 @@
 package com.example.salesbinder;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -7,12 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,7 +78,7 @@ public class UpdateProduct extends AppCompatActivity {
 
                     itemList.add(item);
 
-                    Toast.makeText(getApplicationContext(),"hello "+ item.getNAME(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"hello "+ item.getNAME(),Toast.LENGTH_LONG).show();
                     }
                     adapter.notifyDataSetChanged();
                 }

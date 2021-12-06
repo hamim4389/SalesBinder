@@ -3,7 +3,6 @@ package com.example.salesbinder;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,17 +13,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -71,7 +64,7 @@ public class AddProductActivity extends AppCompatActivity implements DatePickerD
         editTextPrice = findViewById(R.id.edit_txt_price);
         editTextCategory = findViewById(R.id.edit_txt_product_category);
         // expiry date er koto din age alert dite chay
-        editTextDaysToExpire = findViewById(R.id.edit_txt_days_before_expire_date);
+        //editTextDaysToExpire = findViewById(R.id.edit_txt_days_before_expire_date);
 
         radioGroup = findViewById(R.id.radio_group);
         rbYes = findViewById(R.id.radio_expiry_calender_yes);

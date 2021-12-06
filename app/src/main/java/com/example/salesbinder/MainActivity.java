@@ -274,8 +274,8 @@ public class MainActivity extends AppCompatActivity {
         barEntriesArrayList.add(new BarEntry(1f, 4));
         barEntriesArrayList.add(new BarEntry(2f, 6));
         barEntriesArrayList.add(new BarEntry(3f, 8));
-        barEntriesArrayList.add(new BarEntry(4f, 2));
-        barEntriesArrayList.add(new BarEntry(5f, 4));
-        barEntriesArrayList.add(new BarEntry(6f, 1));
+//        barEntriesArrayList.add(new BarEntry(4f, 2));
+//        barEntriesArrayList.add(new BarEntry(5f, 4));
+//        barEntriesArrayList.add(new BarEntry(6f, 1));
     }
 }

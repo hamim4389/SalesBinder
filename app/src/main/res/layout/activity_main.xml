@@ -5,6 +5,7 @@
     android:id="@+id/my_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#688D9E"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
@@ -12,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
+
             android:id="@+id/btn_sell_product"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
-
             android:text="Sell product"
             app:layout_constraintBottom_toTopOf="@+id/id_bar_chart"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,9 +27,11 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <com.github.mikephil.charting.charts.BarChart
+
             android:id="@+id/id_bar_chart"
-            android:layout_width="400dp"
+            android:layout_width="350dp"
             android:layout_height="333dp"
+            android:layout_marginRight="30dp"
             android:layout_marginLeft="100dp"
 
             app:layout_constraintBottom_toTopOf="@+id/btn_add_product"
@@ -39,22 +42,25 @@
             app:layout_constraintVertical_bias="1.0" />
         <Button
             android:id="@+id/btn_add_product"
-            android:layout_width="116dp"
-            android:layout_height="86dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/btnshape"
+            android:layout_marginBottom="10dp"
             android:text="Add Product"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.128"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.694" />
+            app:layout_constraintVertical_bias="0.709" />
 
         <Button
             android:id="@+id/btn_update_product"
-            android:layout_width="116dp"
-            android:layout_height="86dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/btnshape"
+            android:layout_marginBottom="10dp"
             android:text="Update Product"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +71,11 @@
 
         <Button
             android:id="@+id/btn_view_inventory"
-            android:layout_width="116dp"
-            android:layout_height="86dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/btnshape"
             android:text="View Inventory"
+            android:layout_marginTop="180dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.128"
@@ -78,10 +85,11 @@
 
         <Button
             android:id="@+id/btn_remainder"
-            android:layout_width="116dp"
-            android:layout_height="86dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/btnshape"
             android:text="Remainder"
+            android:layout_marginTop="180dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.84"

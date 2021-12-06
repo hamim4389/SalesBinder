@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash02"
     tools:context=".AddProductActivity">
 
     <TextView
         android:id="@+id/txt_view_product_details"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/black"
         android:gravity="center"
         android:text="Product Details"
+        android:textSize="25dp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,19 +31,23 @@
 
     <EditText
         android:id="@+id/edit_txt_product_name"
+        android:background="@drawable/edit1"
+        android:hint="ex:Dove"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_product_details"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/txt_view_product_name"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/txt_view_product_name"
-        android:backgroundTint="@android:color/holo_blue_bright"
-        android:minHeight="48dp" />
+        android:minHeight="40dp"
+        android:padding="3dp"/>
 
     <TextView
         android:id="@+id/txt_view_product_desc"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_product_name"
+        android:layout_below="@+id/edit_txt_product_name"
         android:layout_centerVertical="true"
         android:gravity="center"
         android:paddingLeft="7dp"
@@ -50,20 +57,23 @@
 
     <EditText
         android:id="@+id/edit_txt_product_desc"
+        android:background="@drawable/edit1"
+        android:hint="ex:Company Name"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_product_name"
-        android:layout_toRightOf="@+id/txt_view_product_desc"
-        android:backgroundTint="@android:color/holo_blue_bright"
-        android:gravity="top|start"
-        android:inputType="textMultiLine"
-        android:scrollbars="vertical" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/txt_view_product_desc"
+        android:layout_centerVertical="true"
+        android:minHeight="40dp"
+        android:padding="3dp" />
 
     <TextView
         android:id="@+id/txt_view_category"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_product_desc"
+        android:layout_below="@+id/edit_txt_product_desc"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
@@ -75,19 +85,23 @@
 
     <AutoCompleteTextView
         android:id="@+id/edit_txt_product_category"
+        android:background="@drawable/edit1"
+        android:hint="ex:Soap"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_txt_product_desc"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/txt_view_category"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/txt_view_category"
-        android:backgroundTint="@android:color/holo_blue_bright"
-        android:completionThreshold="1"/>
+        android:minHeight="40dp"
+        android:padding="3dp"/>
 
     <TextView
         android:id="@+id/txt_view_expiry_date"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_category"
+        android:layout_below="@+id/edit_txt_product_category"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
@@ -98,8 +112,8 @@
     <TextView
         android:id="@+id/txt_view_expiry_date_remainder"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_expiry_date"
+        android:layout_height="30dp"
+        android:layout_below="@+id/btn_expiry_calender"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
@@ -111,8 +125,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/radio_group"
-        android:layout_toRightOf="@+id/txt_view_expiry_date_remainder"
-        android:layout_below="@id/btn_expiry_calender"
+        android:layout_marginLeft="10dp"
+
+        android:layout_below="@id/txt_view_expiry_date_remainder"
         android:orientation="horizontal">
 
         <RadioButton android:id="@+id/radio_expiry_calender_yes"
@@ -133,41 +148,30 @@
         android:id="@+id/btn_expiry_calender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_txt_product_category"
-        android:layout_marginLeft="2dp"
+        android:layout_below="@id/txt_view_expiry_date"
         android:layout_marginTop="-9dp"
-        android:layout_toRightOf="@+id/txt_view_expiry_date"
         android:text="Calender" />
 
     <TextView
         android:id="@+id/txt_view_expiry_calender"
-        android:hint="Expiry Date"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_category"
+        android:background="@drawable/edit1"
+        android:layout_below="@+id/txt_view_expiry_date"
         android:layout_toRightOf="@id/btn_expiry_calender"
         android:gravity="center"
+        android:hint="Expiry Date"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
         android:textAlignment="center"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_txt_days_before_expire_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_expiry_date_remainder"
-        android:backgroundTint="@android:color/holo_blue_bright"
-        android:gravity="center"
-        android:visibility="invisible"
-        android:hint="How many days before the alert?" />
 
     <TextView
         android:id="@+id/txt_view_qty"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/edit_txt_days_before_expire_date"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radio_group"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
@@ -179,17 +183,21 @@
         android:id="@+id/edit_txt_qty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_txt_days_before_expire_date"
+        android:layout_below="@+id/txt_view_qty"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/txt_view_category"
-        android:backgroundTint="@android:color/holo_blue_bright" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edit1"
+        android:hint="ex:5/6"
+        android:inputType="text"
+        android:minHeight="40dp"
+        android:padding="3dp" />
 
     <TextView
         android:id="@+id/txt_view_price"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/txt_view_qty"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_txt_qty"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
@@ -199,63 +207,86 @@
 
     <EditText
         android:id="@+id/edit_txt_price"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_txt_qty"
+        android:layout_below="@+id/txt_view_price"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="37dp"
-        android:layout_toRightOf="@+id/txt_view_qty"
-        android:backgroundTint="@android:color/holo_blue_bright" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:background="@drawable/edit1"
+        android:hint="Tk."
+        android:inputType="text"
+        android:minHeight="40dp"
+        android:padding="3dp" />
 
 
     <EditText
         android:id="@+id/edit_txt_min_qty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_price"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edit1"
+        android:inputType="text"
+        android:minHeight="40dp"
+        android:padding="3dp"
+        android:layout_below="@+id/edit_txt_price"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@android:color/holo_blue_bright"
+
         android:hint="Minimum Quantity alert" />
 
     <Button
         android:id="@+id/btn_qr_code"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/edit_txt_min_qty"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/txt_view_qr_code"
+        android:background="@drawable/buttonshape"
         android:gravity="center"
         android:paddingLeft="7dp"
         android:paddingRight="10dp"
         android:text="QR code scanner"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_view_qr_code"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/edit_txt_min_qty"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/btn_qr_code"
-        android:gravity="center"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
         android:hint="QR code"
         android:textAlignment="center"
-        android:textStyle="bold" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        />
 
     <Button
         android:id="@+id/btn_add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_view_qr_code"
+        android:background="@drawable/buttonshape"
+        android:padding="4dp"
+        android:layout_below="@+id/btn_qr_code"
         android:layout_alignParentEnd="true"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="38dp"
-        android:layout_marginEnd="103dp"
+        android:layout_marginEnd="55dp"
+        android:textColor="#FFFFFF"
         android:text="Add to inventory"
-        android:textStyle="bold" />
+
+
+        android:textSize="24sp"/>
 
 
 </RelativeLayout>
